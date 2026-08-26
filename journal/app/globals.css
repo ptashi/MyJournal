@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --color-page-bg: #c2b19e;
+  --color-paper: #f6f1e3;
+  --color-strikeout: #6b6b6b;
+  --color-coffee: #8b7d74;
+
+  --font-fredoka: var(--font-fredoka);
+}
+
+body {
+  background: var(--color-page-bg);
+}
