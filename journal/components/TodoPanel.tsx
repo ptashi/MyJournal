@@ -1,13 +1,10 @@
 "use client"
+type TodoPanelProps = {
+    tasks: { task: string; isComplete: boolean}[];
+    setTasks: React.Dispatch<React.SetStateAction<{ task: string; isComplete: boolean}[]>>;
+}
 
-import { useState } from "react"
-
-export default function TodoPanel() {
-    const [tasks, setTasks] = useState([
-        { task: "", isComplete: false },
-        { task: "", isComplete: false },
-        { task: "", isComplete: false },
-    ])
+export default function TodoPanel({ tasks, setTasks }: TodoPanelProps) {
 
     const addTaskRow = () => {
         setTasks(prevList => [...prevList, {task: "", isComplete: false}])
@@ -38,12 +35,12 @@ export default function TodoPanel() {
                 {tasks.map((task, index) => (
                     <div key={index} className="flex items-center gap-3 border-b border-black/20 py-3">
                         <input type="checkbox" checked={task.isComplete} onChange={() => toggleDone(index)} className="w-5 h-5 accent-page-bg cursor-pointer" />
-                        <input type="text" placeholder="Type your task here..." value={task.task} onChange={(e) => updateTaskText(index, e.target.value)} className={`flex-1 cursor-pointer focus:outline-none ${task.isComplete ? "line-through text-strikeout" : ""}`}/>
-                        <button onClick={() => deleteRow(index)} className="w-5 h-5 text-coffee hover:text-page-bg">✕</button>
+                        <input type="text" placeholder="Type your task here..." value={task.task} onChange={(e) => updateTaskText(index, e.target.value)} className={`flex-1 focus:outline-none ${task.isComplete ? "line-through text-strikeout" : ""}`}/>
+                        <button onClick={() => deleteRow(index)} className="w-5 h-5 cursor-pointer text-coffee hover:text-page-bg">✕</button>
                     </div>
                 ))}
 
-                <button onClick={addTaskRow} className="text-coffee font-semibold text-md mt-3 hover:text-black">+ Add Task</button>
+                <button onClick={addTaskRow} className="text-coffee cursor-pointer font-semibold text-md mt-3 hover:text-black">+ Add Task</button>
             </div>
         </div>
     )

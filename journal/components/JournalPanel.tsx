@@ -1,5 +1,12 @@
+"use client"
 
-export default function JournalPanel() {
+type JournalPanelProps = {
+  journalText: string;
+  setJournalText: (text: string) => void
+}
+
+
+export default function JournalPanel({ journalText, setJournalText } : JournalPanelProps) {
   return (
     <div className="flex flex-col bg-paper rounded-xl h-full">
       <div className="text-4xl font-semibold text-coffee text-center py-10 font-fredoka">Journal</div>

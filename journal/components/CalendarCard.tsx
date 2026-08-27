@@ -16,7 +16,7 @@ export default function CalendarCard() {
   const monthName = months[today.getMonth()];
 
   return (
-    <div className="flex flex-col bg-white rounded-4xl p-6">
+    <div className="flex flex-col bg-white rounded-4xl p-6 mb-5 hover:scale-105 hover:transition-transform hover:duration-300 hover:ease-in-out">
         <div className="text-3xl font-semibold text-black text-center font-fredoka">
             {dayName}
         </div>
