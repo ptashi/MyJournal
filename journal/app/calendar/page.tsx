@@ -1,7 +1,8 @@
 "use client";
+
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CalendarPage() {
     const today = new Date();
@@ -15,6 +16,17 @@ export default function CalendarPage() {
 
     const [viewMonth, setViewMonth] = useState(month)
     const [viewYear, setViewYear] = useState(year)
+
+    const [savedDates, setSavedDates] = useState<string[]>([]);
+
+    useEffect(() => {
+        async function loadSavedDates() {
+            const res = await fetch("/api/entries/dates")
+            const data = await res.json();
+            setSavedDates(data.dates)
+        }
+        loadSavedDates()
+    }, [])
 
     const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
 
@@ -47,7 +59,7 @@ export default function CalendarPage() {
 
     return (
         <div className="flex min-h-screen w-full justify-center items-center">
-            <div className="flex flex-col border rounded-2xl overflow-hidden h-[600px] w-full max-w-2xl">
+            <div className="flex flex-col border rounded-2xl overflow-hidden h-[650px] w-full max-w-2xl">
                 <div className="flex text-3xl h-[110px] font-fredoka justify-between p-8 bg-coffee">
                     <ArrowLeft onClick={() => getPrevMonth()} className="hover:text-paper cursor-pointer" />
                     <div className="flex flex-col items-center gap-1">
@@ -68,7 +80,7 @@ export default function CalendarPage() {
                 <div className="grid grid-cols-7 p-5 gap-3 bg-white flex-1 content-start">
 
                     {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-                        <div className="text-center w-full font-semibold mb-2" key={d}>{d}</div>
+                        <div className="text-center w-full font-semibold" key={d}>{d}</div>
                     ))}
 
                     {Array.from({ length: firstDayWeekday }, (_, i) => (
@@ -77,15 +89,20 @@ export default function CalendarPage() {
 
                     {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => {
                         const isToday = dateKey(day) === todayKey;
+                        const hasEntry = savedDates.includes(dateKey(day));
+
                         return (
                             <Link
                                 key={day}
                                 href={`/day/${dateKey(day)}`}
-                                className={`h-14 flex items-center justify-center rounded-full hover:bg-page-bg font-fredoka text-lg ${isToday ? "bg-coffee text-white" : ""} `}
+                                className={`relative aspect-square flex items-center justify-center rounded-full hover:bg-page-bg font-fredoka text-lg ${isToday ? "bg-coffee/60 text-white" : ""}`}
                             >
-                            {day}
+                                {day}
+                                {hasEntry && (
+                                    <div className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-coffee" />
+                                )}
                             </Link>
-                        )
+                        );
                     })}
                 </div>
             </div>

@@ -23,17 +23,33 @@ export default function DayPage() {
     const [journalEntry, setJournalEntry] = useState("") 
 
     useEffect(() => {
-        const saved = localStorage.getItem(`entry-${date}`);
-        if (saved) {
-            const parsed = JSON.parse(saved)
-            setJournalEntry(parsed.journalEntry)
-            setTasks(parsed.tasks)
-        }
-    })
+        async function loadEntry() {
+            console.log("loadEntry running for date:", date); 
+            const res = await fetch(`/api/entries?date=${date}`)
+            const data = await res.json()
 
-    function saveDay() {
-        const entry = { journalEntry, tasks }
-        localStorage.setItem(`entry-${date}`, JSON.stringify(entry));
+           if (data.entry) {
+                setJournalEntry(data.entry.journalText) 
+                setTasks(data.entry.tasks.map((t: { text: string; isComplete: boolean }) => ({
+                    task: t.text,
+                    isComplete: t.isComplete
+                })))
+            }
+        }
+
+        loadEntry()
+    }, [date])
+
+    async function saveDay() {
+        await fetch("/api/entries", {
+            method:"POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                date,
+                journalText: journalEntry,
+                tasks: tasks.map(t => ({ text: t.task, isComplete: t.isComplete }))
+            })
+        })
         alert("Day saved!")
     }
 

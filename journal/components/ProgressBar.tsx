@@ -3,8 +3,9 @@ type ProgressBarProps = {
 };
 
 export default function ProgressBar({ tasks } : ProgressBarProps) {
-    const numTasks = tasks.length
-    const completedTasks = tasks.filter(t =>  t.isComplete).length
+    const realTasks = tasks.filter(t =>  t.task)
+    const numTasks = realTasks.length
+    const completedTasks = realTasks.filter(t => t.isComplete).length;
     const percent = numTasks === 0 ? 0 : Math.round((completedTasks / numTasks) * 100)
 
 
