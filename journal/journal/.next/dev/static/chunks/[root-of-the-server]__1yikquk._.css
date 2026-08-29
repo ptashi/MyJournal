@@ -89,6 +89,7 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: .25rem;
+    --container-sm: 24rem;
     --container-2xl: 42rem;
     --text-xs: .75rem;
     --text-xs--line-height: calc(1 / .75);
@@ -108,6 +109,7 @@
     --text-6xl--line-height: 1;
     --font-weight-normal: 400;
     --font-weight-semibold: 600;
+    --radius-lg: .5rem;
     --radius-xl: .75rem;
     --radius-2xl: 1rem;
     --radius-4xl: 2rem;
@@ -451,10 +453,6 @@
     aspect-ratio: 1;
   }
 
-  .h-1 {
-    height: var(--spacing);
-  }
-
   .h-1\.5 {
     height: calc(var(--spacing) * 1.5);
   }
@@ -471,20 +469,12 @@
     height: calc(var(--spacing) * 10);
   }
 
-  .h-14 {
-    height: calc(var(--spacing) * 14);
-  }
-
   .h-25 {
     height: calc(var(--spacing) * 25);
   }
 
   .h-\[110px\] {
     height: 110px;
-  }
-
-  .h-\[600px\] {
-    height: 600px;
   }
 
   .h-\[650px\] {
@@ -501,10 +491,6 @@
 
   .min-h-screen {
     min-height: 100vh;
-  }
-
-  .w-1 {
-    width: var(--spacing);
   }
 
   .w-1\.5 {
@@ -525,6 +511,10 @@
 
   .max-w-2xl {
     max-width: var(--container-2xl);
+  }
+
+  .max-w-sm {
+    max-width: var(--container-sm);
   }
 
   .flex-1 {
@@ -599,6 +589,10 @@
     border-radius: 3.40282e38px;
   }
 
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+  }
+
   .rounded-xl {
     border-radius: var(--radius-xl);
   }
@@ -627,16 +621,6 @@
     background-color: var(--color-coffee);
   }
 
-  .bg-coffee\/30 {
-    background-color: #8b7d744d;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-coffee\/30 {
-      background-color: color-mix(in oklab, var(--color-coffee) 30%, transparent);
-    }
-  }
-
   .bg-coffee\/60 {
     background-color: #8b7d7499;
   }
@@ -659,14 +643,6 @@
     background-color: var(--color-white);
   }
 
-  .p-0 {
-    padding: 0;
-  }
-
-  .p-1 {
-    padding: var(--spacing);
-  }
-
   .p-4 {
     padding: calc(var(--spacing) * 4);
   }
@@ -683,8 +659,16 @@
     padding: calc(var(--spacing) * 8);
   }
 
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+
   .px-5 {
     padding-inline: calc(var(--spacing) * 5);
+  }
+
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
   }
 
   .py-3 {
@@ -770,6 +754,10 @@
     color: var(--color-gray-500);
   }
 
+  .text-page-bg {
+    color: var(--color-page-bg);
+  }
+
   .text-strikeout {
     color: var(--color-strikeout);
   }
@@ -847,6 +835,10 @@
 
     .hover\:text-paper:hover {
       color: var(--color-paper);
+    }
+
+    .hover\:opacity-90:hover {
+      opacity: .9;
     }
 
     .hover\:transition-transform:hover {
