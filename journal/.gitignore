@@ -12,7 +12,7 @@
 
 # testing
 /coverage
-/journal
+/journal/
 
 # next.js
 /.next/
