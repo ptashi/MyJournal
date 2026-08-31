@@ -59,7 +59,7 @@ export default function CalendarPage() {
 
     return (
         <div className="flex min-h-screen w-full justify-center items-center">
-            <div className="flex flex-col border rounded-2xl overflow-hidden h-[650px] w-full max-w-2xl">
+            <div className="flex flex-col border rounded-2xl overflow-hidden h-[710px] w-full max-w-2xl">
                 <div className="flex text-3xl h-[110px] font-fredoka justify-between p-8 bg-coffee">
                     <ArrowLeft onClick={() => getPrevMonth()} className="hover:text-paper cursor-pointer" />
                     <div className="flex flex-col items-center gap-1">
@@ -77,7 +77,7 @@ export default function CalendarPage() {
                     <ArrowRight onClick={() => getNextMonth()} className="hover:text-paper cursor-pointer" />
                 </div>
 
-                <div className="grid grid-cols-7 p-5 gap-3 bg-white flex-1 content-start">
+                <div className="grid grid-cols-7 p-5  bg-white flex-1 content-start">
 
                     {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
                         <div className="text-center w-full font-semibold" key={d}>{d}</div>
@@ -95,11 +95,11 @@ export default function CalendarPage() {
                             <Link
                                 key={day}
                                 href={`/day/${dateKey(day)}`}
-                                className={`relative aspect-square flex items-center justify-center rounded-full hover:bg-page-bg font-fredoka text-lg ${isToday ? "bg-coffee/60 text-white" : ""}`}
+                                className={`relative aspect-square flex items-center justify-center rounded-full hover:bg-page-bg font-fredoka text-md ${isToday ? "bg-coffee/60 text-white" : ""}`}
                             >
                                 {day}
                                 {hasEntry && (
-                                    <div className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-coffee" />
+                                    <div className="absolute bottom-1 w-1 h-1 rounded-full bg-coffee" />
                                 )}
                             </Link>
                         );

@@ -404,6 +404,10 @@
     aspect-ratio: 1;
   }
 
+  .h-1 {
+    height: var(--spacing);
+  }
+
   .h-1\.5 {
     height: calc(var(--spacing) * 1.5);
   }
@@ -428,8 +432,20 @@
     height: 110px;
   }
 
+  .h-\[150px\] {
+    height: 150px;
+  }
+
   .h-\[650px\] {
     height: 650px;
+  }
+
+  .h-\[700px\] {
+    height: 700px;
+  }
+
+  .h-\[710px\] {
+    height: 710px;
   }
 
   .h-full {
@@ -442,6 +458,10 @@
 
   .min-h-screen {
     min-height: 100vh;
+  }
+
+  .w-1 {
+    width: var(--spacing);
   }
 
   .w-1\.5 {
@@ -705,8 +725,8 @@
     color: var(--color-gray-500);
   }
 
-  .text-page-bg {
-    color: var(--color-page-bg);
+  .text-paper {
+    color: var(--color-paper);
   }
 
   .text-strikeout {
