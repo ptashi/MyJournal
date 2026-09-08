@@ -1,4 +1,19 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MyJournal
+A personal journaling web app built with Next.js, React, and Prisma. Sign in, write entries, and keep a private, searchable log of your day.
+
+## Features
+
+- Passwordless sign-in via email magic link
+- Create, edit, and delete journal entries / todo-tasks
+- view past/future entries
+- tracks your progress of tasks
+
+## Tech Stack
+Framework: Next.js 16 (App Router)
+UI: React 19, Tailwind CSS 4, Lucide icons
+Database/ORM: Prisma 6
+Auth: NextAuth.js v5 with the Prisma adapter
+Email: Resend (for magic-link sign-in emails)
 
 ## Getting Started
 
@@ -15,19 +30,6 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
 
